@@ -1,0 +1,52 @@
+**Buffer**
+
+Java NIO中的Buffer用于和NIO通道进行交互。如你所知，数据是从通道读入缓冲区，从缓冲区写入到通道中的。
+
+缓冲区本质上是一块可以写入数据，然后可以从中读取数据的内存。这块内存被包装成NIO Buffer对象，并提供了一组方法，用来方便的访问该块内存。
+
+属性：
+
+- capacity
+- position 
+- limit
+
+
+**capacity**
+
+buffer内存块的大小，以byte，long，int等为单位。
+
+**position**
+
+写模式：当写数据到Buffer中的时候，position表示当前的位置。每次写一个数据position的值向后移动到下一个可以插入数据的位置。最大值为capacity - 1；
+
+读模式：表示当前的读数据的位置。当从写模式切入到读模式的时候，position会被重置为0.每次读一个数据position的值向后移动到下一个可以读数据的位置。
+
+**limit**
+
+写模式：limit表示能往Buffer写入多少数据，limit = capacity
+读模式：limit表示能从Buffer读多少数据，limit = 写模式下的position
+
+
+
+
+**Selector**
+
+
+与Selector一起使用时，Channel必须处于非阻塞模式下。这意味着不能将FileChannel与Selector一起使用，因为FileChannel不能切换到非阻塞模式。而套接字通道都可以
+
+**FileChannel**
+
+**SocketChannel**
+
+	
+	public String getMainGroup() {
+		if (groups.size() > 0) {
+			return groups.get(0);
+		} else {
+			log.error("User " + name + " is not a memer of any group");
+			return "error";
+		}
+	}
+
+
+
